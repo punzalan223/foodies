@@ -23,7 +23,7 @@ new class extends Component {
 }; ?>
 
 <div 
-    x-data="{ isScrolled: window.scrollY > 0 }"
+    x-data="{ isScrolled: window.scrollY > 0, isOpen: false }"
     x-init="
         // Update `isScrolled` based on the initial scroll position
         isScrolled = window.scrollY > 0;
@@ -49,10 +49,10 @@ new class extends Component {
                     <a class="{{ request()->routeIs('menu') ? 'text-orange-500' : '' }} hover:text-orange-500" href="{{ route('menu') }}" wire:navigate>
                         Menu   
                     </a>
-                    <a href="" wire:navigate>
+                    <a class="{{ request()->routeIs('service') ? 'text-orange-500' : '' }} hover:text-orange-500" href="{{ route('service') }}" wire:navigate>
                         Service
                     </a>
-                    <a href="" wire:navigate>
+                    <a class="{{ request()->routeIs('shop') ? 'text-orange-500' : '' }} hover:text-orange-500" href="{{ route('shop') }}" wire:navigate>
                         Shop
                     </a>
                 </div>
@@ -80,7 +80,10 @@ new class extends Component {
                         </div>
                     </a>
                 </div>
-                <div class="flex h-full px-3 py-3 bg-white rounded-lg shadow-sm md:hidden">
+                <div 
+                    class="flex h-full px-3 py-3 bg-white rounded-lg shadow-sm cursor-pointer md:hidden hover:bg-orange-500 hover:text-white"
+                    @click="isOpen=true"    
+                >
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
                     </svg>
@@ -88,4 +91,43 @@ new class extends Component {
             </div>
         </div>
     </nav>
+    <!-- Sidebar -->
+    <div 
+        x-show="isOpen" 
+        @click.outside="isOpen = false"
+        x-transition:enter="transition-transform ease-out duration-300"
+        x-transition:enter-start="transform -translate-x-full"
+        x-transition:enter-end="transform translate-x-0"
+        x-transition:leave="transition-transform ease-in duration-300"
+        x-transition:leave-start="transform translate-x-0"
+        x-transition:leave-end="transform -translate-x-full"
+        class="fixed top-0 left-0 z-20 w-64 h-full bg-white shadow-lg"
+    >
+        <div class="p-6">
+            <div class="flex items-center justify-between mb-6">
+                <h3 class="text-xl font-semibold">Foodies</h3>
+                <button @click="isOpen = false" class="text-gray-600 hover:text-gray-900">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
+            </div>
+            <ul class="space-y-4">
+                <li>
+                    <a href="{{ route('home') }}" class="block text-lg text-gray-700 hover:text-orange-500" wire:navigate>Home</a>
+                </li>
+                <li>
+                    <a href="{{ route('menu') }}" class="block text-lg text-gray-700 hover:text-orange-500" wire:navigate>Menu</a>
+                </li>
+                <li>
+                    <a href="{{ route('service') }}" class="block text-lg text-gray-700 hover:text-orange-500" wire:navigate>Service</a>
+                </li>
+                <li>
+                    <a href="{{ route('shop') }}" class="block text-lg text-gray-700 hover:text-orange-500" wire:navigate>Shop</a>
+                </li>
+                <!-- Add more links here as needed -->
+            </ul>
+        </div>
+    </div>
+
 </div>

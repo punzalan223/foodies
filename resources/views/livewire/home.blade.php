@@ -64,26 +64,26 @@ class extends Component {
                             <div class="p-5 text-center bg-white bg-opacity-50 border border-gray-100 shadow-sm xl:border-gray-50 backdrop-filter backdrop-blur-sm rounded-2xl">
                                 <img class="" src="{{ asset('img/foods/Pizza_3D.png') }}" alt="">
                                 <p class="text-xl font-bold text-slate-700">Pizza</p>
-                                <p class="text-gray-700">Pepperoni</p>
-                                <p><span class="text-orange-500">₱</span> 700</p>
+                                <p class="text-gray-700">Main Course</p>
+                                <p><span class="text-orange-500">₱</span> 250.00</p>
                             </div>
                             <div class="p-5 text-center bg-white bg-opacity-50 border border-gray-100 shadow-sm xl:border-gray-50 backdrop-filter backdrop-blur-sm rounded-2xl">
                                 <img src="{{ asset('img/foods/Burger_3D.png') }}">
                                 <p class="text-xl font-bold text-slate-700">Burger</p>
-                                <p class="text-gray-700">Ground Beef</p>
-                                <p><span class="text-orange-500">₱</span> 350</p>
+                                <p class="text-gray-700">Snacks</p>
+                                <p><span class="text-orange-500">₱</span> 150.00</p>
                             </div>
                             <div class="p-5 text-center bg-white bg-opacity-50 border border-gray-100 shadow-sm xl:border-gray-50 backdrop-filter backdrop-blur-sm rounded-2xl">
                                 <img src="{{ asset('img/foods/toast Sandwich_3D.png') }}">
-                                <p class="text-xl font-bold text-slate-700">Sandwich</p>
+                                <p class="text-xl font-bold text-slate-700">Toast Sandwich</p>
                                 <p class="text-gray-700">Toast Sandwich</p>
-                                <p><span class="text-orange-500">₱</span> 247</p>
+                                <p><span class="text-orange-500">₱</span> 180.00</p>
                             </div>
                             <div class="p-5 text-center bg-white bg-opacity-50 border border-gray-100 shadow-sm xl:border-gray-50 backdrop-filter backdrop-blur-sm rounded-2xl">
                                 <img src="{{ asset('img/foods/Toast and eggs_3D.png') }}">
-                                <p class="text-xl font-bold text-slate-700">Bread</p>
-                                <p class="text-gray-700">Toast Egg</p>
-                                <p><span class="text-orange-500">₱</span> 75</p>
+                                <p class="text-xl font-bold text-slate-700">Toast and Eggs</p>
+                                <p class="text-gray-700">Breakfast</p>
+                                <p><span class="text-orange-500">₱</span> 150.00</p>
                             </div>
                         </div>
                     </div>

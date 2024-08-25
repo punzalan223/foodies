@@ -15,6 +15,7 @@ Foodies is a web application for managing food orders with cart functionality.
 - **PHP**: 8.3+
 - **Laravel**: 11
 - **Livewire**: 3
+- **Database**
 - **Tailwind CSS**
 
 ### Installation

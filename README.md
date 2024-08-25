@@ -46,6 +46,10 @@ Foodies is a web application for managing food orders with cart functionality.
     Start the development server:
 
     ```bash
+    npm run dev
+    ```
+
+    ```bash
     php artisan serve
     ```
 

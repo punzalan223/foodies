@@ -38,7 +38,9 @@ new class extends Component {
 >
     <nav class="container px-5 py-4 mx-auto">
         <div class="flex items-center justify-between">
-            <div class="text-2xl font-medium">Foodies</div>
+            <a href="{{ route('home') }}" wire:navigate>
+                <div class="text-2xl font-medium">Foodies</div>
+            </a>
             <div class="absolute hidden -translate-x-1/2 left-1/2 md:block">
                 <div class="flex gap-8 font-medium text-gray-700">                
                     <a class="{{ request()->routeIs('home') ? 'text-orange-500' : '' }} hover:text-orange-500" href="{{ route('home') }}" wire:navigate>

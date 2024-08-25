@@ -32,7 +32,7 @@ class extends Component {
 
     public function updated()
     {
-        $this->validateCartItems();
+        // $this->validateCartItems();
         $this->syncCartWithSession();
     }
 
@@ -56,6 +56,23 @@ class extends Component {
         $this->syncCartWithSession();
         $this->dispatch('add-cart-items');
     }
+    
+    public function addQty($id)
+    {
+        if (isset($this->cart_items[$id])) {
+            $this->cart_items[$id]['qty'] = isset($this->cart_items[$id]['qty']) ? $this->cart_items[$id]['qty'] + 1 : 1;
+            $this->syncCartWithSession();
+        }
+    }
+
+    public function minusQty($id)
+    {
+        if (isset($this->cart_items[$id]) && $this->cart_items[$id]['qty'] > 1) {
+            $this->cart_items[$id]['qty'] -= 1;
+            $this->syncCartWithSession();
+        }
+    }
+
 
     public function removeAll()
     {
@@ -147,16 +164,35 @@ class extends Component {
                                                 <p class="text-xl font-semibold text-gray-800">{{ $cart_item['title'] }}</p>
                                                 <p class="text-sm text-gray-600">{{ $cart_item['category'] }}</p>
             
-                                                <div class="flex items-center justify-between mt-4 space-x-4">
+                                                <div class="flex flex-col justify-between mt-4 space-x-4 lg:items-center lg:flex-row">
                                                     {{-- @dump($cart_item['qty']) --}}
-                                                    <input 
-                                                        class="w-20 h-10 p-2 text-center border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
-                                                        type="number" 
-                                                        min="1" 
-                                                        placeholder="Qty" 
-                                                        wire:model.number.live.debounce.250ms="cart_items.{{ $key }}.qty"
-                                                    >
-                                                    <p class="text-xl font-semibold text-orange-500">₱{{ $cart_item['price'] }}</p>
+                                                    <div class="flex flex-wrap items-center gap-4">
+                                                        <input 
+                                                            class="w-20 h-10 p-2 text-center border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
+                                                            type="text" 
+                                                            min="1" 
+                                                            readonly
+                                                            placeholder="Qty" 
+                                                            wire:model.number.live.debounce.250ms="cart_items.{{ $key }}.qty"
+                                                        >
+                                                        <div class="flex gap-2">                                               
+                                                            <button
+                                                                class="flex items-center justify-center w-8 h-8 text-lg text-white bg-red-500 rounded-full"
+                                                                type="button"
+                                                                wire:click="minusQty({{ $key }})"
+                                                            >
+                                                                <span class="relative -top-[1px]">-</span>
+                                                            </button>
+                                                            <button
+                                                                class="flex items-center justify-center w-8 h-8 text-lg text-white bg-green-500 rounded-full"
+                                                                type="button"
+                                                                wire:click="addQty({{ $key }})"
+                                                            >
+                                                                <span class="relative -top-[1px]">+</span>
+                                                            </button>
+                                                        </div>
+                                                        <p class="text-xl font-semibold text-orange-500">₱{{ $cart_item['price'] }}</p>
+                                                    </div>
                                                 </div>
             
                                                 <button 
